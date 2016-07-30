@@ -1,0 +1,4 @@
+.nyc_output/
+docs/
+src/
+npm-debug.log

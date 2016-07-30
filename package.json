@@ -1,0 +1,38 @@
+{
+  "name": "arabify",
+  "version": "1.0.0",
+  "description": "Convert Roman numerals to their Arabic equivalents.",
+  "repository": "goblindegook/arabify",
+  "scripts": {
+    "build": "cd src; babel *.js -d ../lib",
+    "docs": "esdoc -c esdoc.json",
+    "prepublish": "npm run build",
+    "pretest": "standard",
+    "test": "nyc ava",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  },
+  "author": {
+    "name": "Luís Rodrigues",
+    "email": "hello@goblindegook.com",
+    "url": "https://goblindegook.com"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2016": "^6.11.3",
+    "babel-register": "^6.11.6",
+    "coveralls": "^2.11.6",
+    "esdoc": "^0.4.3",
+    "nyc": "^7.1.0",
+    "standard": "^7.1.2"
+  }
+}

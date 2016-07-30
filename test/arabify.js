@@ -1,0 +1,66 @@
+import test from 'ava'
+import arabify from '../src/'
+
+test('invalid symbols', t => {
+  t.throws(() => arabify('Q'))
+})
+
+test('invalid same-symbol sequences', t => {
+  t.throws(() => arabify('IIII'))
+  t.throws(() => arabify('VV'))
+  t.throws(() => arabify('XXXX'))
+  t.throws(() => arabify('LL'))
+  t.throws(() => arabify('CCCC'))
+  t.throws(() => arabify('DD'))
+  t.throws(() => arabify('MMMM'))
+})
+
+test('invalid symbol pairs', t => {
+  t.throws(() => arabify('IL'))
+  t.throws(() => arabify('IC'))
+  t.throws(() => arabify('ID'))
+  t.throws(() => arabify('IM'))
+  t.throws(() => arabify('VX'))
+  t.throws(() => arabify('VC'))
+  t.throws(() => arabify('VD'))
+  t.throws(() => arabify('VL'))
+  t.throws(() => arabify('VM'))
+  t.throws(() => arabify('XD'))
+  t.throws(() => arabify('XM'))
+  t.throws(() => arabify('LC'))
+  t.throws(() => arabify('LD'))
+  t.throws(() => arabify('LM'))
+  t.throws(() => arabify('DM'))
+})
+
+test('valid roman numeral conversion', t => {
+  t.is(arabify('I'), 1)
+  t.is(arabify('II'), 2)
+  t.is(arabify('III'), 3)
+  t.is(arabify('IV'), 4)
+  t.is(arabify('V'), 5)
+  t.is(arabify('VI'), 6)
+  t.is(arabify('VII'), 7)
+  t.is(arabify('VIII'), 8)
+  t.is(arabify('IX'), 9)
+  t.is(arabify('X'), 10)
+  t.is(arabify('XIV'), 14)
+  t.is(arabify('XV'), 15)
+  t.is(arabify('XIX'), 19)
+  t.is(arabify('XX'), 20)
+  t.is(arabify('L'), 50)
+  t.is(arabify('C'), 100)
+  t.is(arabify('CD'), 400)
+  t.is(arabify('D'), 500)
+  t.is(arabify('CM'), 900)
+  t.is(arabify('M'), 1000)
+  t.is(arabify('MDCCCLXXXVIII'), 1888)
+  t.is(arabify('MM'), 2000)
+  t.is(arabify('MMXVI'), 2016)
+  t.is(arabify('MMM'), 3000)
+  t.is(arabify('MMMCMXCIX'), 3999)
+})
+
+test('case-insensitive conversion', t => {
+  t.is(arabify('mdccclxxxviii'), 1888)
+})
