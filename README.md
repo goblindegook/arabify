@@ -15,8 +15,8 @@ ECMAScript 5:
 ```js
 var arabify = require('arabify').default
 
-arabify(2016) // => 'MMXVI'
-arabify(0)    // => Error
+arabify('MMXVI') // => 2016
+arabify('XXXXX') // => Error
 ```
 
 ECMAScript 2015+:
@@ -24,8 +24,8 @@ ECMAScript 2015+:
 ```js
 import arabify from 'arabify'
 
-arabify(2016) // => 'MMXVI'
-arabify(0)    // => Error
+arabify('MMXVI') // => 2016
+arabify('XXXXX') // => Error
 ```
 
 ## License
