@@ -51,7 +51,7 @@ function recursiveArabify (roman, acc = 0, validSymbols = indices) {
 
 /**
  * Convert Roman numerals to their Arabic-Indic equivalents.
- * 
+ *
  * @param  {Number} roman Numeral between I-MMMCMXCIX.
  * @return {String}       Converted Arabic numeral.
  */
