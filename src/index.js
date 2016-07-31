@@ -56,7 +56,11 @@ function recursiveArabify (roman, acc = 0, validSymbols = indices) {
  * @return {String}       Converted Arabic numeral.
  */
 function arabify (roman) {
-  return recursiveArabify(roman.toUpperCase())
+  if (!roman || !roman.trim().length) {
+    throw new Error('Romani ite domum.')
+  }
+
+  return recursiveArabify(roman.trim().toUpperCase())
 }
 
 export default arabify

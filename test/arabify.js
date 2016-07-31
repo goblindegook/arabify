@@ -1,11 +1,16 @@
 import test from 'ava'
 import arabify from '../src/'
 
-test('invalid symbols', t => {
+test('whitespace is not converted', t => {
+  t.throws(() => arabify(''))
+  t.throws(() => arabify(' '))
+})
+
+test('invalid symbols are not converted', t => {
   t.throws(() => arabify('Q'))
 })
 
-test('invalid same-symbol sequences', t => {
+test('invalid same-symbol sequences are not converted', t => {
   t.throws(() => arabify('IIII'))
   t.throws(() => arabify('VV'))
   t.throws(() => arabify('XXXX'))
@@ -15,7 +20,7 @@ test('invalid same-symbol sequences', t => {
   t.throws(() => arabify('MMMM'))
 })
 
-test('invalid symbol pairs', t => {
+test('invalid symbol pairs are not converted', t => {
   t.throws(() => arabify('IL'))
   t.throws(() => arabify('IC'))
   t.throws(() => arabify('ID'))
@@ -33,7 +38,7 @@ test('invalid symbol pairs', t => {
   t.throws(() => arabify('DM'))
 })
 
-test('valid roman numeral conversion', t => {
+test('conversion of valid roman numerals', t => {
   t.is(arabify('I'), 1)
   t.is(arabify('II'), 2)
   t.is(arabify('III'), 3)
@@ -61,6 +66,6 @@ test('valid roman numeral conversion', t => {
   t.is(arabify('MMMCMXCIX'), 3999)
 })
 
-test('case-insensitive conversion', t => {
+test('conversion is case-insensitive', t => {
   t.is(arabify('mdccclxxxviii'), 1888)
 })
