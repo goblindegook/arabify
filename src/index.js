@@ -1,17 +1,17 @@
 const numerals = {
   IV: { value: 4, nextUnder: 1 },
   IX: { value: 9, nextUnder: 1 },
-  I: { value: 1, nextUnder: 5 },
-  V: { value: 5, nextUnder: 5 },
+  I: { value: 1, nextUnder: 4 },
+  V: { value: 5, nextUnder: 4 },
   XL: { value: 40, nextUnder: 10 },
   XC: { value: 90, nextUnder: 10 },
-  X: { value: 10, nextUnder: 50 },
-  L: { value: 50, nextUnder: 50 },
+  X: { value: 10, nextUnder: 40 },
+  L: { value: 50, nextUnder: 40 },
   CD: { value: 400, nextUnder: 100 },
   CM: { value: 900, nextUnder: 100 },
-  C: { value: 100, nextUnder: 500 },
-  D: { value: 500, nextUnder: 500 },
-  M: { value: 1000, nextUnder: 5000 }
+  C: { value: 100, nextUnder: 400 },
+  D: { value: 500, nextUnder: 400 },
+  M: { value: 1000, nextUnder: 4000 }
 }
 
 const indices = Object.keys(numerals)

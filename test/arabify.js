@@ -36,6 +36,12 @@ test('invalid symbol pairs are not converted', t => {
   t.throws(() => arabify('LD'))
   t.throws(() => arabify('LM'))
   t.throws(() => arabify('DM'))
+  t.throws(() => arabify('IIV'))
+  t.throws(() => arabify('VIV'))
+  t.throws(() => arabify('XXL'))
+  t.throws(() => arabify('LXL'))
+  t.throws(() => arabify('CCD'))
+  t.throws(() => arabify('DCD'))
 })
 
 test('conversion of valid roman numerals', t => {
