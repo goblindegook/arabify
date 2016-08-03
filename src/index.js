@@ -1,28 +1,33 @@
 const numerals = {
-  IV: { value: 4, nextUnder: 1 },
-  IX: { value: 9, nextUnder: 1 },
-  I: { value: 1, nextUnder: 4 },
-  V: { value: 5, nextUnder: 4 },
-  XL: { value: 40, nextUnder: 10 },
-  XC: { value: 90, nextUnder: 10 },
-  X: { value: 10, nextUnder: 40 },
-  L: { value: 50, nextUnder: 40 },
-  CD: { value: 400, nextUnder: 100 },
-  CM: { value: 900, nextUnder: 100 },
-  C: { value: 100, nextUnder: 400 },
-  D: { value: 500, nextUnder: 400 },
-  M: { value: 1000, nextUnder: 4000 }
+  IV: 4,
+  IX: 9,
+  I: 1,
+  V: 5,
+  XL: 40,
+  XC: 90,
+  X: 10,
+  L: 50,
+  CD: 400,
+  CM: 900,
+  C: 100,
+  D: 500,
+  M: 1000
 }
 
-const indices = Object.keys(numerals)
+const allSymbols = Object.keys(numerals)
 
 /**
- * Get the list of symbols under a the given value.
+ * Get the list of symbols allowed after the provided symbol.
  *
- * @param  {Number} max Upper limit for the symbols to return.
- * @return {Array}      List of symbols whose value is under the limit.
+ * @param  {String} symbol Current symbol.
+ * @return {Array}         Symbols allowed after the one provided.
  */
-const getSymbolsUnder = max => indices.filter(i => numerals[i].value < max)
+function getNextValidSymbols (symbol) {
+  const value = numerals[symbol]
+  const dec = Math.pow(10, Math.floor(Math.log10(value)))
+  const max = dec * (value === dec || value === 5 * dec ? 4 : 1)
+  return allSymbols.filter(i => numerals[i] < max)
+}
 
 /**
  * Recursively convert Roman numerals to their Arabic-Indic equivalents.
@@ -31,7 +36,7 @@ const getSymbolsUnder = max => indices.filter(i => numerals[i].value < max)
  * @param  {String} acc   Accumulated output.
  * @return {String}       Converted Arabic numeral.
  */
-function recursiveArabify (roman, acc = 0, validSymbols = indices) {
+function recursiveArabify (roman, acc = 0, validSymbols = allSymbols) {
   if (!roman.length) {
     return acc
   }
@@ -44,8 +49,8 @@ function recursiveArabify (roman, acc = 0, validSymbols = indices) {
 
   return recursiveArabify(
     roman.slice(symbol.length),
-    acc + numerals[symbol].value,
-    getSymbolsUnder(numerals[symbol].nextUnder)
+    acc + numerals[symbol],
+    getNextValidSymbols(symbol)
   )
 }
 
