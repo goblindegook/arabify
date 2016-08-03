@@ -25,7 +25,8 @@ const allSymbols = Object.keys(numerals)
 function getNextValidSymbols (symbol) {
   const value = numerals[symbol]
   const dec = Math.pow(10, Math.floor(Math.log10(value)))
-  const max = dec * (value === dec || value === 5 * dec ? 4 : 1)
+  // Allow symbols up to 4 * dec following 1-character symbols:
+  const max = dec * (symbol.length === 1 ? 4 : 1)
   return allSymbols.filter(i => numerals[i] < max)
 }
 
